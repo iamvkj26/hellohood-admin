@@ -7,13 +7,13 @@ const Card = ({ movieSeries }) => {
 
     const { handleGetMovieSeries, handleDeleteMovieSeries, handleWatchedMovieSeries } = useMovieSeries();
 
-    const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "", msUploadedBy: "" });
+    const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "" });
     const [deleteMoviSeries, setDeleteMoviSeries] = useState(null);
 
     const refOpenCanvas = useRef(null);
 
     const updateMovieSeries = (currentMovieSeies) => {
-        setEditMoviSeries({ _id: currentMovieSeies._id, msName: currentMovieSeies.msName, msAbout: currentMovieSeies.msAbout, msPoster: currentMovieSeies.msPoster, msLink: currentMovieSeies.msLink, msSeason: currentMovieSeies.msSeason, msFormat: currentMovieSeies.msFormat, msIndustry: currentMovieSeies.msIndustry, msReleaseDate: currentMovieSeies.msReleaseDate, msGenre: currentMovieSeies.msGenre, msRating: currentMovieSeies.msRating, msUploadedBy: currentMovieSeies.msUploadedBy });
+        setEditMoviSeries({ _id: currentMovieSeies._id, msName: currentMovieSeies.msName, msAbout: currentMovieSeies.msAbout, msPoster: currentMovieSeies.msPoster, msLink: currentMovieSeies.msLink, msSeason: currentMovieSeies.msSeason, msFormat: currentMovieSeies.msFormat, msIndustry: currentMovieSeies.msIndustry, msReleaseDate: currentMovieSeies.msReleaseDate, msGenre: currentMovieSeies.msGenre, msRating: currentMovieSeies.msRating });
         refOpenCanvas.current.click();
     };
 

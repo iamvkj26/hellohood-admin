@@ -23,7 +23,7 @@ const EditMovieSeries = ({ refOpenCanvas, editMovieSeries }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await updateMovieSeries(formData._id, formData.msName, formData.msAbout, formData.msPoster, formData.msLink, formData.msSeason, formData.msFormat, formData.msIndustry, formData.msReleaseDate, formData.msGenre, formData.msRating, formData.msUploadedBy);
+            const response = await updateMovieSeries(formData._id, formData.msName, formData.msAbout, formData.msPoster, formData.msLink, formData.msSeason, formData.msFormat, formData.msIndustry, formData.msReleaseDate, formData.msGenre, formData.msRating);
             if (response.status === 200) {
                 toast.success(response.data.message);
                 setLoading(false);

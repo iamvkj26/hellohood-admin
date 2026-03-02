@@ -4,7 +4,7 @@ import { postMovieSeries } from "../api/movieseries";
 import useMovieForm from "../hooks/useMovieForm";
 import MovieSeriesForm from "../components/shared/MovieSeriesForm";
 
-const initialState = { msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "", msUploadedBy: "" };
+const initialState = { msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "" };
 
 const AddMovieSeries = () => {
 

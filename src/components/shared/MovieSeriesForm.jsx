@@ -22,6 +22,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 isTextarea
             />
             <FormInput
+                col="col-6"
                 label="Enter the poster link..."
                 name="msPoster"
                 id="poster"
@@ -30,6 +31,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 placeholder="Eg: https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
             />
             <FormInput
+                col="col-6"
                 label="Enter the ott link..."
                 name="msLink"
                 id="link"
@@ -68,7 +70,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 placeholder="Eg: Action, Adventure, Intense, Si-Fi"
             />
             <FormInput
-                col="col-6"
+                col="col-4"
                 label="Enter the part/season..."
                 name="msSeason"
                 id="season"
@@ -78,16 +80,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 maxLength={3}
             />
             <FormInput
-                col="col-6"
-                label="Enter the release date..."
-                type="date"
-                name="msReleaseDate"
-                id="releaseDate"
-                value={movieData.msReleaseDate}
-                onChange={onChange}
-            />
-            <FormInput
-                col="col-6"
+                col="col-4"
                 label="Enter the imdb rating..."
                 name="msRating"
                 id="rating"
@@ -97,15 +90,13 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 maxLength={3}
             />
             <FormInput
-                col="col-6"
-                label="Select the uploader..."
-                type="select"
-                name="msUploadedBy"
-                id="uploadedBy"
-                value={movieData.msUploadedBy}
+                col="col-4"
+                label="Enter the release date..."
+                type="date"
+                name="msReleaseDate"
+                id="releaseDate"
+                value={movieData.msReleaseDate}
                 onChange={onChange}
-                options={["Trisha Sharma", "Vijayant Joshi"]}
-                isSelect
             />
             <div className="text-center">
                 <button type="submit" className="btn btn-secondary">
