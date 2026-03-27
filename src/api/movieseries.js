@@ -63,3 +63,31 @@ export const watchedMovieSeries = async (id) => {
         throw new Error(extractErrorMessage(error));
     };
 };
+
+export const getContact = async () => {
+    try {
+        const response = await retryRequest(() => api.get("/query/get"));
+        return response.data;
+    } catch (error) {
+        console.error(error.message);
+        throw new Error(extractErrorMessage(error));
+    };
+};
+
+export const updateContact = async (id, status) => {
+    try {
+        return await api.patch(`/query/update/${id}/${status}`);
+    } catch (error) {
+        console.error(error.message);
+        throw new Error(extractErrorMessage(error));
+    };
+};
+
+export const deleteContact = async (id) => {
+    try {
+        return await api.delete(`/query/delete/${id}`);
+    } catch (error) {
+        console.error(error.message);
+        throw new Error(extractErrorMessage(error));
+    };
+};

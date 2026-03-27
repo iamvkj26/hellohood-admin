@@ -5,7 +5,7 @@ import EditMovieSeries from "../../pages/EditMovieSeries";
 
 const Card = ({ movieSeries }) => {
 
-    const { handleGetMovieSeries, handleDeleteMovieSeries, handleWatchedMovieSeries } = useMovieSeries();
+    const { handleDeleteMovieSeries, handleWatchedMovieSeries } = useMovieSeries();
 
     const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "" });
     const [deleteMoviSeries, setDeleteMoviSeries] = useState(null);
@@ -19,7 +19,7 @@ const Card = ({ movieSeries }) => {
 
     return (
         <>
-            <div className="container mt-3 mb-3">
+            <div className="container mt-5 mb-5">
                 <MovieCardList
                     movieSeries={movieSeries}
                     deleteId={deleteMoviSeries}
@@ -33,7 +33,6 @@ const Card = ({ movieSeries }) => {
             <EditMovieSeries
                 refOpenCanvas={refOpenCanvas}
                 editMovieSeries={editMovieSeries}
-                handleGetMovieSeries={handleGetMovieSeries}
             />
         </>
     );

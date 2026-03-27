@@ -34,10 +34,35 @@ body {
 
 .text-items {
     font-family: "Montserrat", sans-serif;
+    position: relative;
     font-size: 14px;
     font-weight: 500;
     font-style: normal;
     color: white;
+    padding-bottom: 4px;
+}
+
+.text-items::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: green;
+    transition: width 0.3s ease;
+}
+
+.text-items:hover::after {
+    width: 100%;
+}
+
+.text-items.active::after {
+    width: 100%;
+}
+
+.hover-white:hover {
+    color: white !important;
 }
 
 .search-background {
@@ -54,9 +79,7 @@ body {
     background-color: transparent;
 }
 
-.form-none 
-
-.information {
+.form-none .information {
     background: linear-gradient(360deg, #0000009c, #483e3e);
     color: #fff;
     border-radius: 8px;
@@ -123,6 +146,10 @@ p {
 
 .cp {
     cursor: pointer;
+}
+
+.cp-n {
+    cursor: initial;
 }
 
 .nav-link {

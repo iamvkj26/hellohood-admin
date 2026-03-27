@@ -22,10 +22,11 @@ const MovieCardList = ({ movieSeries = [], onEdit, onDelete, deleteId, confirmDe
                             ))}
                     </div>
                 ) : (
-                    <div className="text-center mt-5">
+                    <div className="text-center mt-3">
                         <h5 className="text-muted">🎬 No Movie/Series Found</h5>
                     </div>
-                )}
+                )
+            }
         </>
     );
 };
