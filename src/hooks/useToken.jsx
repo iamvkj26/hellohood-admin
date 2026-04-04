@@ -10,9 +10,7 @@ const useToken = () => {
             try {
                 const payload = JSON.parse(atob(token.split(".")[1]));
                 if (payload.exp && Date.now() >= payload.exp * 1000) clearAuth();
-
-            } catch (err) {
-                console.error("Invalid token format:", err);
+            } catch {
                 clearAuth();
             };
         };

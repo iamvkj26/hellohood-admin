@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
-import { getMovieSeries, deleteMovieSeries, watchedMovieSeries } from "../api/movieseries";
+import { getMovieSeries, deleteMovieSeries, watchedMovieSeries } from "../api/services/movie.service";
 
 const useMovieSeries = () => {
 

@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { postMovieSeries } from "../api/movieseries";
-import useMovieForm from "../hooks/useMovieForm";
+import { createMovieSeries } from "../api/services/movie.service";
+import useMovieSeriesForm from "../hooks/useMovieSeriesForm";
+import usePageTitle from "../hooks/usePageTitle";
 import MovieSeriesForm from "../components/shared/MovieSeriesForm";
 
 const initialState = { msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "" };
 
 const AddMovieSeries = () => {
 
-    const { formData, onChange, resetForm } = useMovieForm(initialState);
+    const { formData, onChange, resetForm } = useMovieSeriesForm(initialState);
     const [loading, setLoading] = useState(false);
 
     const handleAddMovieSeries = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await postMovieSeries(formData);
-            if (response.status === 200) {
+            const response = await createMovieSeries(formData);
+            if (response.status === 201) {
                 toast.success(response.data.message);
                 setLoading(false);
                 resetForm();
@@ -29,6 +30,8 @@ const AddMovieSeries = () => {
             setLoading(false);
         };
     };
+
+    usePageTitle("Add Movie, Web Series");
 
     return (
         <>

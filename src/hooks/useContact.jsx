@@ -1,21 +1,22 @@
-import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { getContact } from "../api/movieseries";
+import { useState, useCallback } from "react";
+import { getContacts } from "../api/services/contact.service";
 
 const useContact = () => {
 
-    const [contactsData, setContactsData] = useState([]);
+    const [contacts, setContacts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const handleGetContact = async () => {
+    const handleGetContact = useCallback(async () => {
         try {
-            const response = await getContact();
-            setContactsData(Array.isArray(response) ? response : response?.data ?? []);
-        } catch (error) {
-            toast.error(error.message || "Failed to fetch contacts data.");
-        };
-    };
+            setLoading(true);
+            const response = await getContacts();
+            setContacts(Array.isArray(response) ? response : response?.data ?? []);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
 
-    return { contactsData, handleGetContact };
+    return { contacts, loading, handleGetContact };
 };
 
 export default useContact;

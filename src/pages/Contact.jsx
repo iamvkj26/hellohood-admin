@@ -1,23 +1,26 @@
 import { useEffect } from "react";
 import useContact from "../hooks/useContact";
+import usePageTitle from "../hooks/usePageTitle";
 import ContactCard from "../components/card/ContactCard";
 
 const Contact = () => {
 
-    const { contactsData, handleGetContact } = useContact();
+    const { contacts, loading, handleGetContact } = useContact();
+
+    usePageTitle("Query");
 
     useEffect(() => {
         handleGetContact();
-    }, []);
+    }, [handleGetContact]);
 
     return (
         <div className="container mt-5 mb-5">
             <div className="row">
                 {
-                    contactsData.length > 0 ? (
+                    !loading && contacts.length > 0 ? (
                         <div className="row">
                             {
-                                contactsData.map(contact => (
+                                contacts.map(contact => (
                                     <ContactCard
                                         contact={contact}
                                         key={contact._id}
@@ -26,7 +29,7 @@ const Contact = () => {
                         </div>
                     ) : (
                         <div className="text-center mt-5">
-                            <h5 className="text-muted">🎬 No Movie/Series Found</h5>
+                            <h5 className="text-muted">No Query Found!</h5>
                         </div>
                     )}
             </div>

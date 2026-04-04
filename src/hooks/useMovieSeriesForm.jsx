@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useMovieForm = (initialState) => {
+const useMovieSeriesForm = (initialState) => {
 
     const [formData, setFormData] = useState(initialState);
 
@@ -18,4 +18,4 @@ const useMovieForm = (initialState) => {
     return { formData, setFormData, onChange, resetForm };
 };
 
-export default useMovieForm;
+export default useMovieSeriesForm;

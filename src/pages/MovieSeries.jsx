@@ -1,28 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFilters from "../hooks/useFilters";
+import useMovieSeries from "../hooks/useMovieSeries";
+import usePageTitle from "../hooks/usePageTitle";
 import SearchBar from "../components/SearchBar";
 import Card from "../components/card/Card";
-import useMovieSeries from "../hooks/useMovieSeries";
 
 const MovieSeries = () => {
 
     const { filters, ready, updateFilter } = useFilters();
     const { movieSeries, loading, handleGetMovieSeries, clearMovieSeries } = useMovieSeries();
 
+    const capitalizeWords = (str) => str?.toLowerCase().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") || "";
+    usePageTitle(filters?.s ? `Search: ${capitalizeWords(filters.s)}` : "Dashboard");
+
     const [searchDone, setSearchDone] = useState(false);
+
+    useEffect(() => {
+        if (ready && filters?.s) {
+            setSearchDone(true);
+            handleGetMovieSeries({ ...filters, s: filters.s });
+        };
+        // eslint-disable-next-line
+    }, [ready, filters?.s]);
 
     if (!ready || !filters) return null;
 
     const handleSearch = (term) => {
         const s = term?.trim();
-
         if (!s) {
             clearMovieSeries();
             updateFilter("s", "");
             setSearchDone(false);
             return;
         };
-
         setSearchDone(true);
         handleGetMovieSeries({ ...filters, s });
     };
