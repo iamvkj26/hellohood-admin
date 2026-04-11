@@ -16,6 +16,9 @@ const Navbar = () => {
                     {token ? (
                         <div className="d-flex align-items-center gap-2">
                             <Avatar round={true} size="30" name={role} />
+                            <NavLink className="text-items text-decoration-none" to="/movieSeries">
+                                Movie/Series
+                            </NavLink>
                             <NavLink className="text-items text-decoration-none" to="/addMovieSeries">
                                 +  Add Movie/Series
                             </NavLink>

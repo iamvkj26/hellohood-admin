@@ -13,7 +13,7 @@ const useContact = () => {
             setContacts(Array.isArray(response) ? response : response?.data ?? []);
         } finally {
             setLoading(false);
-        }
+        };
     }, []);
 
     return { contacts, loading, handleGetContact };

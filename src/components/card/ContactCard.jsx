@@ -12,7 +12,7 @@ const ContactCard = ({ contact }) => {
                         <p className="card-text col-md-6 text-muted">{contact.mobile}</p>
                     </div>
                 </div>
-                <div className="card-footer small text-end text-danger">
+                <div className="card-footer bg-141414 small text-end text-danger">
                     {formatDate(contact.createdAt)}
                 </div>
             </div>

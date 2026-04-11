@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import { getMovieSeries, deleteMovieSeries, watchedMovieSeries } from "../api/services/movie.service";
 
@@ -7,8 +6,6 @@ const useMovieSeries = () => {
 
     const [movieSeries, setMovieSeries] = useState([]);
     const [loading, setLoading] = useState(false);
-
-    const navigate = useNavigate();
 
     const handleGetMovieSeries = async (filters = {}) => {
         try {
@@ -31,7 +28,7 @@ const useMovieSeries = () => {
             const response = await deleteMovieSeries(id);
             if (response.status === 200) {
                 toast.success(response.data.message);
-                navigate("/");
+                return id;
             };
         } catch (error) {
             toast.error(error.message || "Error deleting movie/series");
@@ -43,7 +40,7 @@ const useMovieSeries = () => {
             const response = await watchedMovieSeries(id);
             if (response.status === 200) {
                 toast.success(response.data.message);
-                navigate("/");
+                return response.data.data;
             };
         } catch (error) {
             toast.error(error.message || "Error updating watched status");

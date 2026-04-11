@@ -8,11 +8,11 @@
 }
 
 body {
+    background-color: black !important;
     font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-optical-sizing: auto;
-    background-color: rgba(3, 37, 65, 1);
 }
 
 .hello-hood {
@@ -20,6 +20,44 @@ body {
     font-size: 28px;
     font-weight: 500;
     font-style: normal;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: #141414;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-scroll {
+    overflow-x: auto;
+}
+
+.table td,
+.table th {
+    white-space: nowrap;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.table-poster {
+    width: 45px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .custom-button {
@@ -65,10 +103,6 @@ body {
     color: white !important;
 }
 
-.search-background {
-    background-color: rgb(15, 41, 62);
-}
-
 .show-password {
     position: absolute;
     top: 70%;
@@ -99,11 +133,23 @@ body {
     border: none;
 }
 
+.form-control {
+    background: #141414 !important;
+}
+
 .form-control:focus {
     box-shadow: none;
 }
 
+.form-select {
+    background: #141414 !important;
+}
+
 .bg-141414 {
+    background: #141414 !important;
+}
+
+.btn-141414 {
     background: #141414 !important;
 }
 
@@ -113,11 +159,12 @@ body {
 }
 
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #141414 !important;
 }
 
 .card:hover {
     transform: scale(1.008);
+    transition: 0.2s ease;
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
     z-index: 2;
 }

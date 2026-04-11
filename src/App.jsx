@@ -4,6 +4,7 @@ import useToken from "./hooks/useToken";
 import Login from "./auth/Login";
 import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
 import MovieSeries from "./pages/MovieSeries";
 import AddMovieSeries from "./pages/AddMovieSeries";
 import Contact from "./pages/Contact";
@@ -30,7 +31,8 @@ const App = () => {
                         ) : (
                             <>
 
-                                <Route path="/" element={<MovieSeries />} />
+                                <Route path="/" element={<Dashboard />} />
+                                <Route path="/movieSeries" element={<MovieSeries />} />
                                 <Route path="/addMovieSeries" element={<AddMovieSeries />} />
                                 <Route path="/query" element={<Contact />} />
                                 <Route path="*" element={<Navigate to="/" replace />} />

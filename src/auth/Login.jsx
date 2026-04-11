@@ -43,7 +43,7 @@ const Login = () => {
                         <small className="fw-bold">Email</small>
                     </label>
                     <div className="input-group mb-3">
-                        <span className="input-group-text">
+                        <span className="input-group-text bg-141414">
                             <i className="fa-solid fa-envelope"></i>
                         </span>
                         <input
@@ -62,7 +62,7 @@ const Login = () => {
                             <small className="fw-bold">Password</small>
                         </label>
                         <div className="input-group">
-                            <span className="input-group-text">
+                            <span className="input-group-text bg-141414">
                                 <i className="fa-solid fa-lock"></i>
                             </span>
                             <input
@@ -87,7 +87,7 @@ const Login = () => {
                         )}
                     </div>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-secondary" disabled={loading}>
+                        <button type="submit" className="btn btn-secondary btn-141414" disabled={loading}>
                             {loading ? <i className="fa fa-spinner fa-spin"></i> : "Log In"}
                         </button>
                     </div>

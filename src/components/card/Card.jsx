@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import toast from "react-hot-toast";
 import useMovieSeries from "../../hooks/useMovieSeries";
 import MovieCardList from "./MovieCardList";
 import EditMovieSeries from "../../pages/EditMovieSeries";
@@ -7,32 +8,58 @@ const Card = ({ movieSeries }) => {
 
     const { handleDeleteMovieSeries, handleWatchedMovieSeries } = useMovieSeries();
 
+    const [movieList, setMovieList] = useState(movieSeries);
+
     const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msSeason: "", msFormat: "", msIndustry: "", msReleaseDate: "", msGenre: [], msRating: "" });
+
     const [deleteMoviSeries, setDeleteMoviSeries] = useState(null);
 
     const refOpenCanvas = useRef(null);
 
     const updateMovieSeries = (currentMovieSeies) => {
-        setEditMoviSeries({ _id: currentMovieSeies._id, msName: currentMovieSeies.msName, msAbout: currentMovieSeies.msAbout, msPoster: currentMovieSeies.msPoster, msLink: currentMovieSeies.msLink, msSeason: currentMovieSeies.msSeason, msFormat: currentMovieSeies.msFormat, msIndustry: currentMovieSeies.msIndustry, msReleaseDate: currentMovieSeies.msReleaseDate, msGenre: currentMovieSeies.msGenre, msRating: currentMovieSeies.msRating });
+        setEditMoviSeries(currentMovieSeies);
         refOpenCanvas.current.click();
+    };
+
+    const handleUpdateSuccess = (updatedItem) => {
+        setMovieList((prev) => prev.map((item) => item._id === updatedItem._id ? updatedItem : item));
+    };
+
+    const handleDeleteSuccess = async (id) => {
+        try {
+            await handleDeleteMovieSeries(id);
+            setMovieList((prev) => prev.filter((item) => item._id !== id));
+        } catch (error) {
+            toast.error(error);
+        };
+    };
+
+    const handleWatchedSuccess = async (id) => {
+        try {
+            const updatedItem = await handleWatchedMovieSeries(id);
+            setMovieList((prev) => prev.map((item) => item._id === id ? updatedItem : item));
+        } catch (error) {
+            toast.error(error);
+        };
     };
 
     return (
         <>
             <div className="container mt-5 mb-5">
                 <MovieCardList
-                    movieSeries={movieSeries}
+                    movieSeries={movieList}
                     deleteId={deleteMoviSeries}
                     onDelete={setDeleteMoviSeries}
-                    confirmDelete={handleDeleteMovieSeries}
+                    confirmDelete={handleDeleteSuccess}
                     cancelDelete={() => setDeleteMoviSeries(null)}
-                    onWatched={handleWatchedMovieSeries}
+                    onWatched={handleWatchedSuccess}
                     onEdit={updateMovieSeries}
                 />
             </div>
             <EditMovieSeries
                 refOpenCanvas={refOpenCanvas}
                 editMovieSeries={editMovieSeries}
+                onUpdateSuccess={handleUpdateSuccess}
             />
         </>
     );

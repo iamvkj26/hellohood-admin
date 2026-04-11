@@ -99,7 +99,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 onChange={onChange}
             />
             <div className="text-center">
-                <button type="submit" className="btn btn-secondary">
+                <button type="submit" className="btn btn-secondary btn-141414">
                     {loading ? (isEdit ? "Updating..." : "Adding...") : (isEdit ? "Update Movie/Series" : "Add Movie/Series")}
                 </button>
             </div>
