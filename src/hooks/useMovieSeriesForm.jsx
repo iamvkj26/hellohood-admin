@@ -7,8 +7,8 @@ const useMovieSeriesForm = (initialState) => {
     const onChange = (e) => {
         const { name, value } = e.target;
         if ((name.includes("Season") || name.includes("Rating")) && !/^(\d{0,2}(\.\d{0,1})?|\d{0,2}-\d{0,2})$/.test(value)) return;
-        if (name.toLowerCase().includes("genre")) {
-            setFormData((prev) => ({ ...prev, [name]: value.split(",").map((g) => g.trim()) }));
+        if (name.toLowerCase().includes("cast") || name.toLowerCase().includes("genre")) {
+            setFormData((prev) => ({ ...prev, [name]: value.split(",").map((cg) => cg.trim()) }));
         } else {
             setFormData((prev) => ({ ...prev, [name]: value }));
         };

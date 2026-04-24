@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { formatDate } from "../../utils/formatDate";
+import CastBadge from "../shared/CastBadge";
 import GenreBadge from "../shared/GenreBadge";
 import MovieCardActions from "./MovieCardActions";
 import MovieCardFooter from "./MovieCardFooter";
@@ -33,6 +34,7 @@ const MovieCard = ({ movie, onEdit, onDelete, deleteId, confirmDelete, cancelDel
                             <i className="text-danger">{formatDate(movie.msReleaseDate)}</i>
                         </p>
                         <p className="card-text small"><strong>F/I:</strong> {movie.msFormat}/{movie.msIndustry}</p>
+                        <CastBadge casts={movie.msCast} />
                         <GenreBadge genres={movie.msGenre} />
                     </div>
                     {

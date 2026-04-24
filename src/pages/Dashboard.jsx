@@ -15,7 +15,7 @@ const recentlyAddedAndWatchedColumns = [
     { header: "Release Date", accessor: "msReleaseDate", type: "date", render: (value) => <span className="badge text-danger">{value}</span> },
     { header: "Rating", accessor: "msRating", render: (value) => <span className="badge text-warning">{value || "0"} <i className="bi bi-star-fill text-warning"></i></span> },
     { header: "Added On", accessor: "msAddedAt", type: "date", render: (value) => <span className="badge text-primary">{value}</span> },
-    { header: "Watched On", accessor: "msWatchedAt", render: (value) => { if (!value) { return <span className="badge text-muted">Not watched yet</span> } return (<span className="badge text-success">{moment(value).format("DD-MMM-YYYY")} </span>) } },
+    { header: "Watched On", accessor: "msWatchedAt", render: (value) => { if (!value) { return <span className="badge text-muted">Not watched yet</span> } return (<span className="badge text-success">{moment(value).format("DD-MMM-YYYY | hh:mm A").toLocaleString("en-US", { timeZone: "Asia/Calcutta", hour12: true, hour: "numeric", minute: "numeric" })} </span>) } },
     {
         header: "OTT", accessor: "ott", render: (value, row) => {
             const ott = (value || "").toLowerCase();
@@ -68,13 +68,13 @@ const Dashboard = () => {
 
     usePageTitle("Dashboard");
 
+    const [page, setPage] = useState(1);
+    const [limit] = useState(10);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [range, setRange] = useState("");
 
     const { dashboard, loading, error, handleGetDashboard } = useDashboard();
-    console.log(dashboard);
-
 
     const genreLabels = dashboard?.genreStats?.data?.map(item => item._id);
     const genreValues = dashboard?.genreStats?.data?.map(item => item.count);
@@ -90,10 +90,12 @@ const Dashboard = () => {
     const labels = upcomingData?.map(item => item.month);
 
     useEffect(() => {
-        if (startDate && endDate) handleGetDashboard({ startDate, endDate });
-        else if (range) handleGetDashboard({ range });
-        else handleGetDashboard();
-    }, [range, startDate, endDate, handleGetDashboard]);
+        handleGetDashboard({ range, startDate, endDate, page, limit });
+    }, [range, startDate, endDate, page, limit, handleGetDashboard]);
+
+    useEffect(() => {
+        setPage(1);
+    }, [range, startDate, endDate]);
 
     if (!dashboard && loading) return <p className="text-center my-3">Loading…</p>;
     if (error) return <p className="text-center my-3">{error}</p>;
@@ -117,7 +119,10 @@ const Dashboard = () => {
                         <option value="">Select Range</option>
                         <option value="7d">Last 7 Days</option>
                         <option value="15d">Last 15 Days</option>
-                        <option value="30d">Last 30 Days</option>
+                        <option value="45d">Last 45 Days</option>
+                        <option value="60d">Last 60 Days</option>
+                        <option value="90d">Last 90 Days</option>
+                        <option value="all">All Time</option>
                     </select>
                     <input type="date" className="form-control p-3 w-auto" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
                     <input type="date" className="form-control p-3 w-auto" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
@@ -134,7 +139,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <CommonLineChart
                                     data={dashboard?.recentlyAddedStats?.data}
-                                    range={dashboard?.filters?.range}
+                                    filters={dashboard?.filters}
                                     label="Recently Added"
                                     title="Recently Added"
                                     color="#8A9A5B"
@@ -148,7 +153,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <CommonLineChart
                                     data={dashboard?.watchedStats?.data}
-                                    range={dashboard?.filters?.range}
+                                    filters={dashboard?.filters}
                                     label="Watched"
                                     title="Watched Activity"
                                     color="#8A9A5B"
@@ -166,7 +171,8 @@ const Dashboard = () => {
                                 <CommonTable
                                     columns={recentlyAddedAndWatchedColumns}
                                     data={dashboard?.recentAddedAndWatched?.data}
-                                    range={dashboard?.filters?.range}
+                                    pagination={dashboard?.recentAddedAndWatched}
+                                    setPage={setPage}
                                     text="No recently added or watched data is available!"
                                 />
                             </div>
@@ -178,7 +184,7 @@ const Dashboard = () => {
                                 <CommonDoughnutChart
                                     title="Industry Distribution"
                                     data={dashboard?.industryStats?.data}
-                                    range={dashboard?.filters?.range}
+                                    filters={dashboard?.filters}
                                     colorMap={industryColors}
                                 />
                             </div>
@@ -189,7 +195,7 @@ const Dashboard = () => {
                             <div className="card-body" style={{ height: "500px" }}>
                                 <CommonBarChart
                                     title="Genre Distribution"
-                                    range={dashboard?.filters?.range}
+                                    filters={dashboard?.filters}
                                     labels={genreLabels}
                                     datasets={[{ label: "Genres", data: genreValues, backgroundColor: "#8A9A5B" }]}
                                 />
@@ -202,7 +208,7 @@ const Dashboard = () => {
                                 <CommonDoughnutChart
                                     title="OTT Distribution"
                                     data={dashboard?.ottStats?.data}
-                                    range={dashboard?.filters?.range}
+                                    filters={dashboard?.filters}
                                     colorMap={ottColors}
                                 />
                             </div>
@@ -211,7 +217,8 @@ const Dashboard = () => {
                     <div className="col-md-6 mt-3">
                         <div className="card">
                             <div className="card-body" style={{ height: "500px" }}>
-                                <CommonBarChart title="Upcoming Releases"
+                                <CommonBarChart
+                                    title="Upcoming Releases"
                                     labels={labels}
                                     datasets={[
                                         {
@@ -225,7 +232,8 @@ const Dashboard = () => {
                                             backgroundColor: "#848884"
                                         }
                                     ]}
-                                    stacked={false} />
+                                    stacked={false}
+                                />
                             </div>
                         </div>
                     </div>

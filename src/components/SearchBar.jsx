@@ -32,7 +32,7 @@ const SearchBar = ({ updateFilter, searchValue, onSearch }) => {
         <>
             <nav className="navbar navbar-expand-lg bg-141414">
                 <div className="container">
-                    <input type="search" className="form-control form-none me-2" placeholder="Search the movies, web series..." value={search} onChange={handleInputChange} onKeyDown={handleKeyDown} />
+                    <input type="search" className="form-control form-none me-2 search-italic" placeholder="Search for a movie, web series, person..." value={search} onChange={handleInputChange} onKeyDown={handleKeyDown} />
                     <button className="btn btn-212529" type="button" onClick={handleSearch}>
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>

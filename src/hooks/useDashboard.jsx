@@ -4,7 +4,6 @@ import { getDashboard } from "../api/services/dashboard.service";
 const useDashboard = () => {
 
     const [dashboard, setDashboard] = useState(null);
-
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -17,7 +16,7 @@ const useDashboard = () => {
                 cards: response?.card || {},
                 recentlyAddedStats: response?.recentlyAddedStats || {},
                 watchedStats: response?.watchedStats || {},
-                recentAddedAndWatched: response?.recentAddedAndWatched || { data: [], total: 0 },
+                recentAddedAndWatched: response?.recentAddedAndWatched || { data: [], total: 0, page: 1, limit: 10, totalPages: 1 },
                 industryStats: response?.industryStats || { data: {} },
                 genreStats: response?.genreStats || { data: [] },
                 ottStats: response?.ottStats || { data: [] },

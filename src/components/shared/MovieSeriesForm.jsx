@@ -62,6 +62,14 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 isSelect
             />
             <FormInput
+                label="Enter the cast (comma-separated)..."
+                name="msCast"
+                id="cast"
+                value={movieData.msCast?.join(", ")}
+                onChange={onChange}
+                placeholder="Eg: Matthew McConaughey, Anne Hathaway, Michael Caine, Jessica Chastain, Casey Affleck"
+            />
+            <FormInput
                 label="Enter the genre (comma-separated)..."
                 name="msGenre"
                 id="genre"

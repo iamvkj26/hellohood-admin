@@ -234,6 +234,10 @@ p {
     flex: 0 0 calc(20% - 1rem);
 }
 
+.search-italic::placeholder {
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     .card-grid .movie-card-wrapper {
         flex: 0 0 calc(50% - 1rem);
