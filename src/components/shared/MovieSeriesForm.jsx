@@ -1,6 +1,9 @@
 import FormInput from "../FormInput";
 
 const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = false }) => {
+
+    const isSeries = movieData.msFormat === "series";
+
     return (
         <form className="row" onSubmit={onSubmit}>
             <FormInput
@@ -40,25 +43,38 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 placeholder="Eg: https://www.primevideo.com/detail/0PUNMGZEWOMYFKR1XIGOLTL2YM"
             />
             <FormInput
-                col="col-6"
+                col={isSeries ? "col-4" : "col-6"}
                 label="Select the format..."
                 type="select"
                 name="msFormat"
                 id="format"
                 value={movieData.msFormat}
                 onChange={onChange}
-                options={["Movie", "Series"]}
+                options={["movie", "series"]}
                 isSelect
             />
+            {movieData.msFormat === "series" && (
+                <FormInput
+                    col="col-4"
+                    label="Select series status..."
+                    type="select"
+                    name="sStatus"
+                    id="status"
+                    value={movieData.sStatus}
+                    onChange={onChange}
+                    options={["ongoing", "completed"]}
+                    isSelect
+                />
+            )}
             <FormInput
-                col="col-6"
+                col={isSeries ? "col-4" : "col-6"}
                 label="Select the industry..."
                 type="select"
                 name="msIndustry"
                 id="industry"
                 value={movieData.msIndustry}
                 onChange={onChange}
-                options={["Bollywood", "Hollywood", "Other"]}
+                options={["bollywood", "hollywood", "other"]}
                 isSelect
             />
             <FormInput
@@ -77,18 +93,19 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 onChange={onChange}
                 placeholder="Eg: Action, Adventure, Intense, Si-Fi"
             />
-            <FormInput
-                col="col-4"
-                label="Enter the part/season..."
-                name="msSeason"
-                id="season"
-                value={movieData.msSeason}
+            {movieData.msFormat === "series" && (<FormInput
+                col={isSeries ? "col-4" : "col-6"}
+                label="Enter the series seasons..."
+                name="sSeasons"
+                id="seasons"
+                value={movieData.sSeasons}
                 onChange={onChange}
-                placeholder="Eg: 0"
-                maxLength={3}
+                placeholder="Eg: 1"
+                maxLength={2}
             />
+            )}
             <FormInput
-                col="col-4"
+                col={isSeries ? "col-4" : "col-6"}
                 label="Enter the imdb rating..."
                 name="msRating"
                 id="rating"
@@ -98,7 +115,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 maxLength={3}
             />
             <FormInput
-                col="col-4"
+                col={isSeries ? "col-4" : "col-6"}
                 label="Enter the release date..."
                 type="date"
                 name="msReleaseDate"

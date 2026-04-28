@@ -22,7 +22,7 @@ const CommonTable = ({ columns = [], data = [], pagination, setPage, text }) => 
                                         value = moment(value).format("DD/MM/YYYY | hh:mm A").toLocaleString("en-US", { timeZone: "Asia/Calcutta", hour12: true, hour: "numeric", minute: "numeric" });
                                     };
                                     return (
-                                        <td key={colIndex} className="text-nowrap">
+                                        <td key={colIndex} className="text-nowrap text-capitalize">
                                             {col.render ? col.render(value, row) : value || "-"}
                                         </td>
                                     );

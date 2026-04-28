@@ -26,9 +26,9 @@ export const createMovieSeries = async (addData) => {
     };
 };
 
-export const updateMovieSeries = async (_id, msName, msAbout, msPoster, msLink, msSeason, msFormat, msIndustry, msReleaseDate, msGenre, msRating) => {
+export const updateMovieSeries = async (_id, msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sSeasons) => {
     try {
-        return await client.patch(`/admin/update/${_id}`, { msName, msAbout, msPoster, msLink, msSeason, msFormat, msIndustry, msReleaseDate, msGenre, msRating });
+        return await client.patch(`/admin/update/${_id}`, { msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sSeasons });
     } catch (error) {
         console.error(error.message);
         throw new Error(extractErrorMessage(error));

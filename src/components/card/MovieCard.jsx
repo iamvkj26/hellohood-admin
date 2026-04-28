@@ -22,9 +22,7 @@ const MovieCard = ({ movie, onEdit, onDelete, deleteId, confirmDelete, cancelDel
                     </Link>
                     <div className="ms-details-overlay card-body">
                         <h5 className="card-title fw-medium">
-                            <strong>
-                                {movie.msName}{movie.msSeason === "0" ? "" : ` - (Season ${movie.msSeason})`}
-                            </strong>
+                            <strong>{movie.msName}</strong>
                         </h5>
                         <p className="card-text small clamp-text" title={movie.msAbout}>
                             {movie.msAbout?.slice(0, 105)}...
@@ -33,7 +31,7 @@ const MovieCard = ({ movie, onEdit, onDelete, deleteId, confirmDelete, cancelDel
                             <strong>Release Date:</strong>{" "}
                             <i className="text-danger">{formatDate(movie.msReleaseDate)}</i>
                         </p>
-                        <p className="card-text small"><strong>F/I:</strong> {movie.msFormat}/{movie.msIndustry}</p>
+                        <p className="card-text text-capitalize small"><strong>F/I:</strong> {movie.msFormat}/{movie.msIndustry}</p>
                         <CastBadge casts={movie.msCast} />
                         <GenreBadge genres={movie.msGenre} />
                     </div>
