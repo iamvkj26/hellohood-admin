@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-const defaultFilters = { s: "" };
+const defaultFilters = { s: "", range: "", startDate: "", endDate: "", page: 1 };
 
 const useFilters = () => {
 
@@ -14,19 +14,22 @@ const useFilters = () => {
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         setFilters({
-            s: params.get("s") || ""
+            s: params.get("s") || "",
+            range: params.get("range") || "",
+            startDate: params.get("startDate") || "",
+            endDate: params.get("endDate") || "",
+            page: Number(params.get("page")) || 1
         });
         setReady(true);
     }, [location.search]);
 
     useEffect(() => {
         if (!filters) return;
-
         const params = new URLSearchParams();
         Object.entries(filters).forEach(([key, value]) => {
-            if (value && key) params.set(key, value);
+            if (key === "page" && Number(value) === 1) return;
+            if (value !== "" && value !== null && value !== undefined) params.set(key, value);
         });
-
         navigate({ search: params.toString() }, { replace: true });
     }, [filters, navigate]);
 

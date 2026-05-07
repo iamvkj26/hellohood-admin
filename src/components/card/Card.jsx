@@ -10,7 +10,7 @@ const Card = ({ movieSeries }) => {
 
     const [movieList, setMovieList] = useState(movieSeries);
 
-    const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msFormat: "", msIndustry: "", msCast: [], msGenre: [], msRating: "", msReleaseDate: "", sStatus: "", sSeasons: "" });
+    const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msFormat: "", msIndustry: "", msCast: [], msGenre: [], msRating: "", msReleaseDate: "", sStatus: "", sTSeasons: "" });
 
     const [deleteMoviSeries, setDeleteMoviSeries] = useState(null);
 
@@ -45,7 +45,7 @@ const Card = ({ movieSeries }) => {
 
     return (
         <>
-            <div className="container mt-5 mb-5">
+            <div className="container mb-3">
                 <MovieCardList
                     movieSeries={movieList}
                     deleteId={deleteMoviSeries}

@@ -37,12 +37,12 @@ const CommonTable = ({ columns = [], data = [], pagination, setPage, text }) => 
                     <div className="card-footer bg-141414">
                         <div className="pagination">
                             <div className="page-item">
-                                <button className="page-link" disabled={pagination?.page === 1} onClick={() => { setPage(1) }}>
+                                <button className="page-link" disabled={pagination?.page === 1} onClick={() => setPage(1)}>
                                     1
                                 </button>
                             </div>
                             <div className="page-item">
-                                <button className="page-link" disabled={pagination?.page === 1} onClick={() => setPage(prev => prev - 1)}>
+                                <button className="page-link" disabled={pagination?.page === 1} onClick={() => setPage(pagination.page - 1)}>
                                     &laquo; Previous
                                 </button>
                             </div>
@@ -52,7 +52,7 @@ const CommonTable = ({ columns = [], data = [], pagination, setPage, text }) => 
                                 </div>
                             </div>
                             <div className="page-item">
-                                <button className="page-link" disabled={pagination?.page === pagination?.totalPages} onClick={() => setPage(prev => prev + 1)}>
+                                <button className="page-link" disabled={pagination?.page === pagination?.totalPages} onClick={() => setPage(pagination.page + 1)}>
                                     Next &raquo;
                                 </button>
                             </div>

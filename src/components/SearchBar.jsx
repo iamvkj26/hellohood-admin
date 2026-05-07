@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
-const SearchBar = ({ updateFilter, searchValue, onSearch }) => {
+const SearchBar = ({ updateFilter, searchValue }) => {
 
     const [search, setSearch] = useState(searchValue || "");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setSearch(searchValue);
+        setSearch(searchValue || "");
     }, [searchValue]);
 
     const handleSearch = () => {
         const term = search.trim();
-        if (!term) return;
         updateFilter("s", term);
-        onSearch?.(term);
+        if (window.location.pathname !== "/movieseries") {
+            navigate(`/movieseries?s=${encodeURIComponent(term)}`);
+        };
     };
 
     const handleKeyDown = (e) => {
@@ -24,21 +27,32 @@ const SearchBar = ({ updateFilter, searchValue, onSearch }) => {
         setSearch(val);
         if (val === "") {
             updateFilter("s", "");
-            onSearch?.("");
         };
     };
 
     return (
-        <>
-            <nav className="navbar navbar-expand-lg bg-141414">
-                <div className="container">
-                    <input type="search" className="form-control form-none me-2 search-italic" placeholder="Search for a movie, web series, person..." value={search} onChange={handleInputChange} onKeyDown={handleKeyDown} />
-                    <button className="btn btn-212529" type="button" onClick={handleSearch}>
-                        <i className="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-            </nav>
-        </>
+        <nav className="navbar navbar-expand-lg bg-141414">
+            <div className="container">
+
+                <input
+                    type="search"
+                    className="form-control form-none me-2 search-italic"
+                    placeholder="Search for a movie, web series, person..."
+                    value={search}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                />
+
+                <button
+                    className="btn btn-212529"
+                    type="button"
+                    onClick={handleSearch}
+                >
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div>
+        </nav>
     );
 };
 

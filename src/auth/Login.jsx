@@ -37,7 +37,7 @@ const Login = () => {
         <main className="d-flex justify-content-center align-items-center vh-100">
             <div className="card shadow p-5">
                 <form onSubmit={handleLogin}>
-                    <div className="h6 fw-bolder text-center">HelloHood - Admin Panel | Log In</div>
+                    <div className="h6 fw-bolder text-center">Log in to your account</div>
                     <hr />
                     <label className="form-label mb-0" htmlFor="email">
                         <small className="fw-bold">Email</small>

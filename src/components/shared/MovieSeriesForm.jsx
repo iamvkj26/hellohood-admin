@@ -96,9 +96,9 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
             {movieData.msFormat === "series" && (<FormInput
                 col={isSeries ? "col-4" : "col-6"}
                 label="Enter the series seasons..."
-                name="sSeasons"
+                name="sTSeasons"
                 id="seasons"
-                value={movieData.sSeasons}
+                value={movieData.sTSeasons}
                 onChange={onChange}
                 placeholder="Eg: 1"
                 maxLength={2}

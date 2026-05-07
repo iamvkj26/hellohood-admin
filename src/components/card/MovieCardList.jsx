@@ -1,7 +1,6 @@
 import MovieCard from "./MovieCard";
 
 const MovieCardList = ({ movieSeries = [], onEdit, onDelete, deleteId, confirmDelete, cancelDelete, onWatched }) => {
-
     return (
         <>
             {

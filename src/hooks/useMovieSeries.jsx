@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { getMovieSeries, deleteMovieSeries, watchedMovieSeries } from "../api/services/movie.service";
+import { getMovieSeries, getMovieSeriesDetails, deleteMovieSeries, watchedMovieSeries } from "../api/services/movie.service";
 
 const useMovieSeries = () => {
 
     const [movieSeries, setMovieSeries] = useState([]);
+    const [movieSeriesDetails, setMovieSeriesDetails] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const handleGetMovieSeries = async (filters = {}) => {
@@ -21,6 +22,18 @@ const useMovieSeries = () => {
 
     const clearMovieSeries = () => {
         setMovieSeries([]);
+    };
+
+    const handleGetMovieSeriesDetails = async (id) => {
+        try {
+            setLoading(true);
+            const response = await getMovieSeriesDetails(id);
+            setMovieSeriesDetails(Array.isArray(response) ? response : response?.data ?? []);
+        } catch (error) {
+            toast.error(error.message || "Failed to fetch movie/series details.");
+        } finally {
+            setLoading(false);
+        };
     };
 
     const handleDeleteMovieSeries = async (id) => {
@@ -47,7 +60,7 @@ const useMovieSeries = () => {
         };
     };
 
-    return { movieSeries, loading, handleGetMovieSeries, clearMovieSeries, handleDeleteMovieSeries, handleWatchedMovieSeries };
+    return { movieSeries, loading, handleGetMovieSeries, clearMovieSeries, movieSeriesDetails, handleGetMovieSeriesDetails, handleDeleteMovieSeries, handleWatchedMovieSeries };
 };
 
 export default useMovieSeries;

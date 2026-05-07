@@ -18,6 +18,15 @@ export const getMovieSeries = async (filters = {}) => {
     };
 };
 
+export const getMovieSeriesDetails = async (id) => {
+    try {
+        const response = await client.get(`/admin/details/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(extractErrorMessage(error));
+    };
+};
+
 export const createMovieSeries = async (addData) => {
     try {
         return await client.post("/admin/post", addData);
@@ -26,9 +35,9 @@ export const createMovieSeries = async (addData) => {
     };
 };
 
-export const updateMovieSeries = async (_id, msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sSeasons) => {
+export const updateMovieSeries = async (_id, msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sTSeasons) => {
     try {
-        return await client.patch(`/admin/update/${_id}`, { msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sSeasons });
+        return await client.patch(`/admin/update/${_id}`, { msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sTSeasons });
     } catch (error) {
         console.error(error.message);
         throw new Error(extractErrorMessage(error));

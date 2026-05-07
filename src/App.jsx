@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import MovieSeries from "./pages/MovieSeries";
+import MovieSeriesDetails from "./pages/MovieSeriesDetails";
 import AddMovieSeries from "./pages/AddMovieSeries";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
@@ -33,6 +34,7 @@ const App = () => {
 
                                 <Route path="/" element={<Dashboard />} />
                                 <Route path="/movieSeries" element={<MovieSeries />} />
+                                <Route path="/details/:id" element={<MovieSeriesDetails />} />
                                 <Route path="/addMovieSeries" element={<AddMovieSeries />} />
                                 <Route path="/query" element={<Contact />} />
                                 <Route path="*" element={<Navigate to="/" replace />} />
