@@ -10,7 +10,7 @@ const Card = ({ movieSeries }) => {
 
     const [movieList, setMovieList] = useState(movieSeries);
 
-    const [editMovieSeries, setEditMoviSeries] = useState({ msName: "", msAbout: "", msPoster: "", msLink: "", msFormat: "", msIndustry: "", msCast: [], msGenre: [], msRating: "", msReleaseDate: "", sStatus: "", sTSeasons: "" });
+    const [editMovieSeries, setEditMoviSeries] = useState({ tmdbId: "", msName: "", msAbout: "", msPoster: "", msLink: "", msFormat: "", msIndustry: "", msGenre: [], msRating: "", msReleaseDate: "", msStatus: "" });
 
     const [deleteMoviSeries, setDeleteMoviSeries] = useState(null);
 

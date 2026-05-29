@@ -10,7 +10,7 @@ export const getMovieSeries = async (filters = {}) => {
         const query = new URLSearchParams();
         if (s) query.append("search", s);
 
-        const response = await retryRequest(() => client.get(`/admin/get?${query.toString()}`));
+        const response = await retryRequest(() => client.get(`/movieseries/get?${query.toString()}`));
         return response.data;
     } catch (error) {
         console.error(error.message);
@@ -20,7 +20,7 @@ export const getMovieSeries = async (filters = {}) => {
 
 export const getMovieSeriesDetails = async (id) => {
     try {
-        const response = await client.get(`/admin/details/${id}`);
+        const response = await client.get(`/movieseries/details/${id}`);
         return response.data;
     } catch (error) {
         throw new Error(extractErrorMessage(error));
@@ -29,15 +29,15 @@ export const getMovieSeriesDetails = async (id) => {
 
 export const createMovieSeries = async (addData) => {
     try {
-        return await client.post("/admin/post", addData);
+        return await client.post("/movieseries/post", addData);
     } catch (error) {
         throw new Error(extractErrorMessage(error));
     };
 };
 
-export const updateMovieSeries = async (_id, msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sTSeasons) => {
+export const updateMovieSeries = async (_id, tmdbId, msName, msAbout, msPoster, msLink, msFormat, msIndustry, msGenre, msRating, msReleaseDate, msStatus) => {
     try {
-        return await client.patch(`/admin/update/${_id}`, { msName, msAbout, msPoster, msLink, msFormat, msIndustry, msCast, msGenre, msRating, msReleaseDate, sStatus, sTSeasons });
+        return await client.patch(`/movieseries/update/${_id}`, { tmdbId, msName, msAbout, msPoster, msLink, msFormat, msIndustry, msGenre, msRating, msReleaseDate, msStatus });
     } catch (error) {
         console.error(error.message);
         throw new Error(extractErrorMessage(error));
@@ -46,7 +46,7 @@ export const updateMovieSeries = async (_id, msName, msAbout, msPoster, msLink, 
 
 export const deleteMovieSeries = async (id) => {
     try {
-        return await client.delete(`/admin/delete/${id}`);
+        return await client.delete(`/movieseries/delete/${id}`);
     } catch (error) {
         throw new Error(extractErrorMessage(error));
     };
@@ -54,7 +54,7 @@ export const deleteMovieSeries = async (id) => {
 
 export const watchedMovieSeries = async (id) => {
     try {
-        return await client.patch(`/admin/watched/${id}`);
+        return await client.patch(`/movieseries/watched/${id}`);
     } catch (error) {
         throw new Error(extractErrorMessage(error));
     };

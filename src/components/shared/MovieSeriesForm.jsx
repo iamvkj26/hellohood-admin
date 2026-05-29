@@ -7,7 +7,17 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
     return (
         <form className="row" onSubmit={onSubmit}>
             <FormInput
-                label="Enter the title..."
+                col="col-3"
+                label="TMDB ID..."
+                name="tmdbId"
+                id="tmdbId"
+                value={movieData.tmdbId}
+                onChange={onChange}
+                placeholder="Eg: 157336"
+            />
+            <FormInput
+                col="col-9"
+                label="Title..."
                 name="msName"
                 id="name"
                 value={movieData.msName}
@@ -15,7 +25,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 placeholder="Eg: Interstellar"
             />
             <FormInput
-                label="Enter the description..."
+                label="Description..."
                 name="msAbout"
                 id="about"
                 value={movieData.msAbout}
@@ -26,7 +36,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
             />
             <FormInput
                 col="col-6"
-                label="Enter the poster link..."
+                label="Poster Link..."
                 name="msPoster"
                 id="poster"
                 value={movieData.msPoster}
@@ -35,7 +45,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
             />
             <FormInput
                 col="col-6"
-                label="Enter the ott link..."
+                label="OTT Link..."
                 name="msLink"
                 id="link"
                 value={movieData.msLink}
@@ -44,7 +54,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
             />
             <FormInput
                 col={isSeries ? "col-4" : "col-6"}
-                label="Select the format..."
+                label="Format..."
                 type="select"
                 name="msFormat"
                 id="format"
@@ -56,11 +66,11 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
             {movieData.msFormat === "series" && (
                 <FormInput
                     col="col-4"
-                    label="Select series status..."
+                    label="Series Status..."
                     type="select"
-                    name="sStatus"
+                    name="msStatus"
                     id="status"
-                    value={movieData.sStatus}
+                    value={movieData.msStatus}
                     onChange={onChange}
                     options={["ongoing", "completed"]}
                     isSelect
@@ -68,7 +78,7 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
             )}
             <FormInput
                 col={isSeries ? "col-4" : "col-6"}
-                label="Select the industry..."
+                label="Industry..."
                 type="select"
                 name="msIndustry"
                 id="industry"
@@ -78,35 +88,17 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 isSelect
             />
             <FormInput
-                label="Enter the cast (comma-separated)..."
-                name="msCast"
-                id="cast"
-                value={movieData.msCast?.join(", ")}
-                onChange={onChange}
-                placeholder="Eg: Matthew McConaughey, Anne Hathaway, Michael Caine, Jessica Chastain, Casey Affleck"
-            />
-            <FormInput
-                label="Enter the genre (comma-separated)..."
+                col="col-6"
+                label="Genre (comma-separated)..."
                 name="msGenre"
                 id="genre"
                 value={movieData.msGenre?.join(", ")}
                 onChange={onChange}
                 placeholder="Eg: Action, Adventure, Intense, Si-Fi"
             />
-            {movieData.msFormat === "series" && (<FormInput
-                col={isSeries ? "col-4" : "col-6"}
-                label="Enter the series seasons..."
-                name="sTSeasons"
-                id="seasons"
-                value={movieData.sTSeasons}
-                onChange={onChange}
-                placeholder="Eg: 1"
-                maxLength={2}
-            />
-            )}
             <FormInput
-                col={isSeries ? "col-4" : "col-6"}
-                label="Enter the imdb rating..."
+                col="col-3"
+                label="IMDB Rating..."
                 name="msRating"
                 id="rating"
                 value={movieData.msRating}
@@ -115,8 +107,8 @@ const MovieSeriesForm = ({ movieData, onChange, loading, onSubmit, isEdit = fals
                 maxLength={3}
             />
             <FormInput
-                col={isSeries ? "col-4" : "col-6"}
-                label="Enter the release date..."
+                col="col-3"
+                label="Release Date..."
                 type="date"
                 name="msReleaseDate"
                 id="releaseDate"

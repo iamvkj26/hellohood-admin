@@ -5,7 +5,7 @@ import useMovieSeriesForm from "../hooks/useMovieSeriesForm";
 import usePageTitle from "../hooks/usePageTitle";
 import MovieSeriesForm from "../components/shared/MovieSeriesForm";
 
-const initialState = { msName: "", msAbout: "", msPoster: "", msLink: "", msFormat: "", msIndustry: "", msCast: [], msGenre: [], msRating: "", msReleaseDate: "", sStatus: "", sTSeasons: "" };
+const initialState = { tmdbId: "", msName: "", msAbout: "", msPoster: "", msLink: "", msFormat: "", msIndustry: "", msGenre: [], msRating: "", msReleaseDate: "", msStatus: "" };
 
 const AddMovieSeries = () => {
 

@@ -19,7 +19,7 @@ const EditMovieSeries = ({ refOpenCanvas, editMovieSeries, onUpdateSuccess }) =>
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await updateMovieSeries(formData._id, formData.msName, formData.msAbout, formData.msPoster, formData.msLink, formData.msFormat, formData.msIndustry, formData.msCast, formData.msGenre, formData.msRating, formData.msReleaseDate, formData.sStatus, formData.sTSeasons);
+            const response = await updateMovieSeries(formData._id, formData.tmdbId, formData.msName, formData.msAbout, formData.msPoster, formData.msLink, formData.msFormat, formData.msIndustry, formData.msGenre, formData.msRating, formData.msReleaseDate, formData.msStatus);
             if (response.status === 200) {
                 toast.success(response.data.message);
                 setLoading(false);
@@ -41,7 +41,7 @@ const EditMovieSeries = ({ refOpenCanvas, editMovieSeries, onUpdateSuccess }) =>
         <>
             <button ref={refOpenCanvas} className="d-none" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"></button>
 
-            <div className="offcanvas offcanvas-end bg-141414" data-bs-backdrop="static" tabIndex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+            <div className="offcanvas offcanvas-end w-50 bg-141414" data-bs-backdrop="static" tabIndex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="staticBackdropLabel">Update Movie/Series</h5>
                     <button ref={refCloseCanvas} className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
