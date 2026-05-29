@@ -1,85 +1,13 @@
-import { useState } from "react";
 import moment from "moment";
 import { formatDate } from "../../utils/formatDate";
 
 const SeriesDetailCard = ({ seasons = [] }) => {
-
-    const latestSeason = seasons[seasons?.length - 1];
-    const [showAllSeasons, setShowAllSeasons] = useState(false);
-
     return (
         <>
             <div className="container mt-3">
-                <h4 className="fw-bold">Current Season</h4>
-                <div className="card shadow-sm">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="bg-141414 py-3 px-3 rounded">
-                                <div className="d-flex gap-3">
-                                    <div>
-                                        {
-                                            latestSeason?.sPoster ? (
-                                                <img
-                                                    src={latestSeason?.sPoster}
-                                                    alt={`Season ${latestSeason?.sNumber}`}
-                                                    className="current-season-image"
-                                                />
-                                            ) : (
-                                                <div className="current-season-placeholder">
-                                                    No Poster
-                                                </div>
-                                            )
-                                        }
-                                    </div>
-                                    <div className="flex-grow-1">
-                                        <h4 className="fw-bold">
-                                            Season {latestSeason?.sNumber}
-                                        </h4>
-                                        <div className="d-flex gap-2 flex-wrap mb-2">
-                                            {
-                                                latestSeason?.sReleaseDate && (
-                                                    <span className="fw-semibold">
-                                                        {new Date(latestSeason?.sReleaseDate).getFullYear()}
-                                                    </span>
-                                                )
-                                            }
-                                            {
-                                                latestSeason?.sEpisodeCount && (
-                                                    <span className="fw-semibold">
-                                                        • {latestSeason?.sEpisodeCount} Episodes
-                                                    </span>
-                                                )
-                                            }
-                                        </div>
-                                        {
-                                            latestSeason?.sAbout ? (
-                                                <p className="text-muted small mb-2">
-                                                    {latestSeason?.sAbout.slice(0, 220)}...
-                                                </p>
-                                            ) : (
-                                                <p className="text-muted small">
-                                                    No Description
-                                                </p>
-                                            )
-                                        }
-                                        <div className="d-flex gap-3 flex-wrap small">
-                                            {
-                                                latestSeason?.sReleaseDate && (
-                                                    <span>
-                                                        <i className="fa-regular fa-calendar"></i> {moment(latestSeason.sReleaseDate).format("DD/MM/YYYY | hh:mm A").toLocaleString("en-US", { timeZone: "Asia/Calcutta", hour12: true, hour: "numeric", minute: "numeric" })} <span className="badge bg-dark">Season Finale</span>
-                                                    </span>
-                                                )
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h6 className="fw-bold mt-2 mb-3 cp" onClick={() => setShowAllSeasons(!showAllSeasons)}><u>{showAllSeasons ? "Hide All Seasons" : "View All Seasons"}</u></h6>
+                <h4 className="mt-3">All Season</h4>
                 {
-                    showAllSeasons && seasons.map((season, index) => (
+                    seasons.map((season, index) => (
                         <div key={season._id || index} className="card shadow-sm mb-3">
                             <div className="row">
                                 <div className="col-md-2 d-flex justify-content-center align-items-center text-center">
@@ -143,7 +71,7 @@ const SeriesDetailCard = ({ seasons = [] }) => {
                                             </p>
                                         )
                                     }
-                                    <hr />
+                                    <hr className="border-secondary opacity-75" />
                                     <div className="d-flex align-items-center justify-content-end flex-wrap gap-2 px-2 small text-muted mb-3">
                                         {
                                             season.sAddedAt && (

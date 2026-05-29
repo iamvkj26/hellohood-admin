@@ -9,7 +9,7 @@ const NumberCard = ({ cards = {} }) => {
     ];
 
     return (
-        <div className="row mt-5">
+        <div className="row mt-3">
             {stats.map((item, index) => (
                 <div className={item.col} key={index}>
                     <div className="card mt-3 shadow-sm position-relative p-3">

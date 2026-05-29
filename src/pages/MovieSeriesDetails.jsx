@@ -5,6 +5,7 @@ import useMovieSeries from "../hooks/useMovieSeries";
 import usePageTitle from "../hooks/usePageTitle";
 import SearchBar from "../components/SearchBar";
 import MovieDetailCard from "../components/card/MovieDetailCard";
+import CastCarousel from "../components/card/CastCarousel";
 import SeriesDetailCard from "../components/card/SeriesDetailCard";
 
 const MovieSeriesDetails = () => {
@@ -27,7 +28,8 @@ const MovieSeriesDetails = () => {
         <>
             <SearchBar updateFilter={() => { }} searchValue="" />
             <MovieDetailCard movieSeriesDetails={movieSeriesDetails} />
-            <SeriesDetailCard seasons={movieSeriesDetails?.sSeasons} id={movieSeriesDetails?._id} refreshDetails={() => handleGetMovieSeriesDetails(id)} />
+            <CastCarousel casts={movieSeriesDetails?.msCast} format={movieSeriesDetails?.msFormat} />
+            {movieSeriesDetails?.msFormat === "series" && (<SeriesDetailCard seasons={movieSeriesDetails?.sSeasons} />)}
         </>
     );
 };

@@ -38,7 +38,7 @@ const Login = () => {
             <div className="card shadow p-5">
                 <form onSubmit={handleLogin}>
                     <div className="h6 fw-bolder text-center">Log in to your account</div>
-                    <hr />
+                    <hr className="border-secondary opacity-75" />
                     <label className="form-label mb-0" htmlFor="email">
                         <small className="fw-bold">Email</small>
                     </label>

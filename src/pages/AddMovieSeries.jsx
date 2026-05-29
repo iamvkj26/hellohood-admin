@@ -38,7 +38,8 @@ const AddMovieSeries = () => {
             <div className="container mt-5 mb-5">
                 <div className="card p-3">
                     <div className="card-body text-center">
-                        <h2 className="bg-dark-subtle text-dark-emphasis">Add Movie/Series</h2><hr />
+                        <h2 className="bg-dark-subtle text-dark-emphasis">Add Movie/Series</h2>
+                        <hr className="border-secondary opacity-75" />
                     </div>
                     <MovieSeriesForm movieData={formData} onChange={onChange} onSubmit={handleAddMovieSeries} loading={loading} />
                 </div >

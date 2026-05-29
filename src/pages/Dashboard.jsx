@@ -52,6 +52,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         updateFilter("page", 1);
+        // eslint-disable-next-line
     }, [range, startDate, endDate]);
 
     if (!ready) return null;
@@ -70,7 +71,6 @@ const Dashboard = () => {
                             </li>
                         </ul>
                     </div>
-                    <hr />
                 </div>
                 <Filters filters={filters} updateFilter={updateFilter} resetFilters={resetFilters} />
                 <NumberCard cards={dashboard?.cards} />
