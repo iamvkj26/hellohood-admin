@@ -4,6 +4,7 @@ import useToken from "./hooks/useToken";
 import Login from "./auth/Login";
 import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import MovieSeries from "./pages/MovieSeries";
 import MovieSeriesDetails from "./pages/MovieSeriesDetails";
@@ -22,26 +23,29 @@ const App = () => {
             <div className="d-flex flex-column min-vh-100">
                 <Toaster position="top-right" toastOptions={{ duration: 3000, style: { fontSize: "16px" } }} />
                 {token && <Navbar />}
-                <main className="flex-grow-1">
-                    <Routes>
-                        {!token ? (
-                            <>
-                                <Route path="/login" element={<Login />} />
-                                <Route path="*" element={<Navigate to="/login" replace />} />
-                            </>
-                        ) : (
-                            <>
+                <div className="d-flex flex-grow-1">
+                    {token && <Sidebar />}
+                    <main className="flex-grow-1 p-3">
+                        <Routes>
+                            {!token ? (
+                                <>
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="*" element={<Navigate to="/login" replace />} />
+                                </>
+                            ) : (
+                                <>
 
-                                <Route path="/" element={<Dashboard />} />
-                                <Route path="/movieSeries" element={<MovieSeries />} />
-                                <Route path="/details/:id" element={<MovieSeriesDetails />} />
-                                <Route path="/addMovieSeries" element={<AddMovieSeries />} />
-                                <Route path="/query" element={<Contact />} />
-                                <Route path="*" element={<Navigate to="/" replace />} />
-                            </>
-                        )}
-                    </Routes>
-                </main>
+                                    <Route path="/" element={<Dashboard />} />
+                                    <Route path="/movieSeries" element={<MovieSeries />} />
+                                    <Route path="/details/:id" element={<MovieSeriesDetails />} />
+                                    <Route path="/addMovieSeries" element={<AddMovieSeries />} />
+                                    <Route path="/query" element={<Contact />} />
+                                    <Route path="*" element={<Navigate to="/" replace />} />
+                                </>
+                            )}
+                        </Routes>
+                    </main>
+                </div>
                 {token && <Footer />}
             </div>
         </>

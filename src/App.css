@@ -13,6 +13,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -155,6 +156,10 @@ body::-webkit-scrollbar {
 
 .btn-141414 {
     background: #141414 !important;
+}
+
+.navbar {
+    border-bottom: 1px solid #141414;
 }
 
 .navbar-nav .nav-link {
@@ -354,4 +359,72 @@ p {
     font-size: 12px;
     color: #b3b3b3;
     margin: 0;
+}
+
+.sidebar {
+    width: 250px;
+    position: sticky;
+    top: 0px;
+    height: calc(100vh - 60px);
+    color: #fff;
+    overflow-y: auto;
+    border-right: 1px solid #141414;
+    flex-shrink: 0;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar-logo {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    border-bottom: 1px solid #141414;
+    text-align: center;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.menu-title {
+    padding: 15px 20px 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    letter-spacing: 1px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #d1d5db;
+    text-decoration: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.sidebar-link:hover {
+    background: #141414;
+    color: #fff;
+}
+
+.sidebar-link.active {
+    background: #141414;
+    color: #fff;
+    border-left: 4px solid #363535;
+}
+
+.sidebar-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.logout-btn {
+    color: #f87171;
 }

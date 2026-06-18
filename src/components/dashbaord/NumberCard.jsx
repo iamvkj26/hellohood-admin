@@ -1,4 +1,4 @@
-const NumberCard = ({ cards = {} }) => {
+const NumberCard = ({ cards = {}, watchCards = {} }) => {
 
     const stats = [
         { title: "Movies", value: cards.movies, icon: "bi-film", footer: "Format", col: "col-md-2" },
@@ -6,6 +6,13 @@ const NumberCard = ({ cards = {} }) => {
         { title: "Other", value: cards.others, icon: "bi-collection-play", footer: "Industry", col: "col-md-4" },
         { title: "Bollywood", value: cards.bollywood, icon: "bi-camera-reels", footer: "Industry", col: "col-md-2" },
         { title: "Hollywood", value: cards.hollywood, icon: "bi-globe", footer: "Industry", col: "col-md-2" }
+    ];
+
+    const watchedStats = [
+        { title: "Watched Movies", value: watchCards.watchedMovies, col: "col-md-3" },
+        { title: "Watched Series", value: watchCards.watchedSeries, col: "col-md-3" },
+        { title: "Not Watched Movies", value: watchCards.notWatchedMovies, col: "col-md-3" },
+        { title: "Not Watched Series", value: watchCards.notWatchedSeries, col: "col-md-3" },
     ];
 
     return (
@@ -22,6 +29,16 @@ const NumberCard = ({ cards = {} }) => {
                             <figcaption className="blockquote-footer">
                                 {item.footer}
                             </figcaption>
+                        </div>
+                    </div>
+                </div>
+            ))}
+            {watchedStats.map((item, index) => (
+                <div className={item.col} key={index}>
+                    <div className="card mt-3 p-3">
+                        <div className="text-center">
+                            <h6 className="text-muted">{item.title}</h6>
+                            <h3 className="fw-bold">{item.value || 0}</h3>
                         </div>
                     </div>
                 </div>

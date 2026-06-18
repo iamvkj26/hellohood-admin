@@ -1,5 +1,8 @@
 const Filters = ({ filters, updateFilter, resetFilters }) => {
 
+    const minDate = "2025-07-01";
+    const maxDate = new Date().toISOString().split("T")[0];
+
     const { range, startDate, endDate } = filters;
 
     return (
@@ -16,11 +19,10 @@ const Filters = ({ filters, updateFilter, resetFilters }) => {
                 </select>
             </div>
             <div className="col-md-2">
-                <input type="date" className="form-control py-3" value={startDate} onChange={(e) => { updateFilter("startDate", e.target.value); updateFilter("range", ""); }} />
+                <input type="date" className="form-control py-3" value={startDate} onChange={(e) => { updateFilter("startDate", e.target.value); updateFilter("range", ""); }} min={minDate} max={maxDate} />
             </div>
             <div className="col-md-2">
-
-                <input type="date" className="form-control py-3" value={endDate} onChange={(e) => { updateFilter("endDate", e.target.value); updateFilter("range", ""); }} />
+                <input type="date" className="form-control py-3" value={endDate} onChange={(e) => { updateFilter("endDate", e.target.value); updateFilter("range", ""); }} min={minDate} max={maxDate} />
             </div>
             {(range || startDate || endDate) && (
                 <button className="btn btn-dark bg-141414 w-auto" onClick={resetFilters}>

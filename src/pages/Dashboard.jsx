@@ -73,7 +73,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <Filters filters={filters} updateFilter={updateFilter} resetFilters={resetFilters} />
-                <NumberCard cards={dashboard?.cards} />
+                <NumberCard cards={dashboard?.cards} watchCards={dashboard?.watchCards} />
                 <div className="row mt-3">
                     <div className="col-md-6">
                         <div className="card">

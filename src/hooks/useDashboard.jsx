@@ -14,6 +14,7 @@ const useDashboard = () => {
             const response = await getDashboard(filters);
             setDashboard({
                 cards: response?.card || {},
+                watchCards: response?.watchCard || {},
                 recentlyAddedStats: response?.recentlyAddedStats || {},
                 watchedStats: response?.watchedStats || {},
                 recentAddedAndWatched: response?.recentAddedAndWatched || { data: [], total: 0, page: 1, limit: 10, totalPages: 1 },
