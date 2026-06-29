@@ -11,7 +11,7 @@ const MovieSeries = () => {
     const { movieSeries, loading, handleGetMovieSeries, clearMovieSeries } = useMovieSeries();
 
     const capitalizeWords = (str) => str?.toLowerCase().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") || "";
-    usePageTitle(filters?.s ? `${capitalizeWords(filters.s)}` : "Movie/Series");
+    usePageTitle(filters?.s ? `${capitalizeWords(filters.s)}` : "Movies/Series");
 
     const [searchDone, setSearchDone] = useState(false);
 

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { updateMovieSeries } from "../api/services/movie.service";
+import { updateMovieSeries } from "../api/services/movieseries.service.js";
 import useMovieSeriesForm from "../hooks/useMovieSeriesForm";
 import MovieSeriesForm from "../components/shared/MovieSeriesForm";
 

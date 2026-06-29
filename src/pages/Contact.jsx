@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import useContact from "../hooks/useContact";
 import usePageTitle from "../hooks/usePageTitle";
-import ContactCard from "../components/card/ContactCard";
+import AllTable from "../components/AllTable";
+import contact from "../constants/contact";
 
 const Contact = () => {
 
-    const { contacts, loading, handleGetContact } = useContact();
+    const { contacts, loading, handleGetContact, handleUpdateContact, handleDeleteContact } = useContact();
 
     usePageTitle("Query");
 
@@ -13,25 +14,31 @@ const Contact = () => {
         handleGetContact();
     }, [handleGetContact]);
 
+    if (!contacts && loading) return <p className="text-center my-3">Loading…</p>;
+
     return (
-        <div className="container mt-5 mb-5">
+        <div className="container mt-3 mb-3">
             <div className="row">
-                {
-                    !loading && contacts.length > 0 ? (
-                        <div className="row">
-                            {
-                                contacts.map(contact => (
-                                    <ContactCard
-                                        contact={contact}
-                                        key={contact._id}
-                                    />
-                                ))}
+                <div className="col-md-12">
+                    <h3 className="page-title">Query!</h3>
+                    <ul className="breadcrumb">
+                        <li className="breadcrumb-item">
+                            <span className="breadcrumb">Dashboard</span>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <span className="breadcrumb-active">Query</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="card">
+                        <div className="card-body">
+                            <AllTable columns={contact(handleUpdateContact, handleDeleteContact)} data={contacts} />
                         </div>
-                    ) : (
-                        <div className="text-center mt-5">
-                            <h5 className="text-muted">No Query Found!</h5>
-                        </div>
-                    )}
+                    </div>
+                </div>
             </div>
         </div>
     );

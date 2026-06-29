@@ -318,8 +318,6 @@ p {
 }
 
 .castCard {
-    min-width: 140px;
-    max-width: 140px;
     background: #1c1c1c;
     border-radius: 10px;
     overflow: hidden;
@@ -362,7 +360,6 @@ p {
 }
 
 .sidebar {
-    width: 250px;
     position: sticky;
     top: 0px;
     height: calc(100vh - 60px);

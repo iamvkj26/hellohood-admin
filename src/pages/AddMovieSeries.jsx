@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { createMovieSeries } from "../api/services/movie.service";
+import { createMovieSeries } from "../api/services/movieseries.service.js";
 import useMovieSeriesForm from "../hooks/useMovieSeriesForm";
 import usePageTitle from "../hooks/usePageTitle";
 import MovieSeriesForm from "../components/shared/MovieSeriesForm";
@@ -31,11 +31,11 @@ const AddMovieSeries = () => {
         };
     };
 
-    usePageTitle("Add Movie, Web Series");
+    usePageTitle("Add Movie/Series");
 
     return (
         <>
-            <div className="container mt-5 mb-5">
+            <div className="container mt-3 mb-3">
                 <div className="card p-3">
                     <div className="card-body text-center">
                         <h2 className="bg-dark-subtle text-dark-emphasis">Add Movie/Series</h2>

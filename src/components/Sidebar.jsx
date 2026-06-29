@@ -21,11 +21,11 @@ const Sidebar = () => {
                 </li>
                 <NavLink to="/movieSeries" className="sidebar-link">
                     <i className="fas fa-film"></i>
-                    <span>Movies / Series</span>
+                    <span>Movies/Series</span>
                 </NavLink>
                 <NavLink to="/addMovieSeries" className="sidebar-link">
                     <i className="fas fa-plus-circle"></i>
-                    <span>Add Movie / Series</span>
+                    <span>Add Movie/Series</span>
                 </NavLink>
                 <NavLink to="/franchise" className="sidebar-link">
                     <i className="fas fa-layer-group"></i>

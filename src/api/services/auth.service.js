@@ -8,3 +8,11 @@ export const login = async (credentials) => {
         throw new Error(extractErrorMessage(error));
     };
 };
+
+export const logout = async () => {
+    try {
+        return await client.post("/auth/logout");
+    } catch (error) {
+        throw new Error(extractErrorMessage(error));
+    };
+};

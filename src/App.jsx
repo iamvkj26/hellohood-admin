@@ -9,7 +9,9 @@ import Dashboard from "./pages/Dashboard";
 import MovieSeries from "./pages/MovieSeries";
 import MovieSeriesDetails from "./pages/MovieSeriesDetails";
 import AddMovieSeries from "./pages/AddMovieSeries";
+import Franchise from "./pages/Franchise";
 import Contact from "./pages/Contact";
+import Logs from "./pages/Logs";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -39,7 +41,9 @@ const App = () => {
                                     <Route path="/movieSeries" element={<MovieSeries />} />
                                     <Route path="/details/:id" element={<MovieSeriesDetails />} />
                                     <Route path="/addMovieSeries" element={<AddMovieSeries />} />
+                                    <Route path="/franchise" element={<Franchise />} />
                                     <Route path="/query" element={<Contact />} />
+                                    <Route path="/logs" element={<Logs />} />
                                     <Route path="*" element={<Navigate to="/" replace />} />
                                 </>
                             )}
